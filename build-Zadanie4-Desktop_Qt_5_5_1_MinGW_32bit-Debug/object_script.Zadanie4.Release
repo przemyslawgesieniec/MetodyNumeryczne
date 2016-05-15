@@ -1,0 +1,13 @@
+INPUT(
+./release/main.o
+./release/funkcja.o
+./release/interpolacja.o
+./release/interpolacjawielomian.o
+./release/wielomian.o
+./release/calkowanie.o
+./release/newtoncotes.o
+./release/gauss.o
+./release/funkcjatrygonometryczna.o
+./release/funkcjazlozona1.o
+./release/funkcjazlozona2.o
+);

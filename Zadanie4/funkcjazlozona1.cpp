@@ -12,5 +12,5 @@ string FunkcjaZlozona1::napis()
 
 double FunkcjaZlozona1::oblicz(double x)
 {
-    return cos(x*x)*x*x;
+    return sqrt(1+x);
 }

@@ -1,0 +1,13 @@
+INPUT(
+./debug/main.o
+./debug/funkcja.o
+./debug/interpolacja.o
+./debug/interpolacjawielomian.o
+./debug/wielomian.o
+./debug/calkowanie.o
+./debug/newtoncotes.o
+./debug/gauss.o
+./debug/funkcjatrygonometryczna.o
+./debug/funkcjazlozona1.o
+./debug/funkcjazlozona2.o
+);
