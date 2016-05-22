@@ -11,7 +11,7 @@ public:
     Wielomian();
     Wielomian(int stopien);
     string napis();
-    double oblicz(double x);
+    double oblicz(double x, bool waga);
     void ustawDomyslny();
     double setTablicaWspolczynnikow(int stopien, double value);
 protected:

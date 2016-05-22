@@ -1,5 +1,6 @@
 #include "Wielomian.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 Wielomian::Wielomian() : Funkcja()
 {
@@ -16,7 +17,7 @@ Wielomian::Wielomian(int stopien) : Funkcja()
 
 }
 
-double Wielomian::oblicz(double x)
+double Wielomian::oblicz(double x,bool waga)
 {
 
     double y = tablicaWspolczynnikow[0];
@@ -24,6 +25,12 @@ double Wielomian::oblicz(double x)
     {
       y=y*x+tablicaWspolczynnikow[i];
     }
+
+    if(waga==1)
+    {
+        y=y/sqrt(1-x*x);
+    }
+
     return y;
 
 }

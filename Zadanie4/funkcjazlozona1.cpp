@@ -10,7 +10,12 @@ string FunkcjaZlozona1::napis()
   return "wykres funkcji zlozonej";
 }
 
-double FunkcjaZlozona1::oblicz(double x)
-{
-    return sqrt(1+x);
+double FunkcjaZlozona1::oblicz(double x,bool waga)
+{   
+    double y = sqrt(1+x);
+    if(waga==1)
+    {
+        y=y/sqrt(1-x*x);
+    }
+    return y;
 }

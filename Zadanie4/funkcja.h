@@ -8,7 +8,7 @@ class Funkcja
 public:
     Funkcja() {};
     virtual ~Funkcja() {};
-    virtual double oblicz(double x1)=0;
+    virtual double oblicz(double x1,bool waga)=0;
     virtual string napis()=0;
 protected:
     double x1;

@@ -9,7 +9,7 @@ class NewtonCotes :public Calkowanie
 {
 public:
     NewtonCotes();
-    double calkuj(vector<double> x, double h, Funkcja *wsk);
+    double calkuj(vector<double> x, double h, Funkcja *wsk, bool waga);
 };
 
 #endif // NEWTONCOTES_H

@@ -8,7 +8,7 @@ class FunkcjaZlozona1 :public Funkcja
 public:
     FunkcjaZlozona1();
     string napis();
-    double oblicz(double x);
+    double oblicz(double x, bool waga);
 };
 
 #endif // FUNKCJAZLOZONA1_H

@@ -9,8 +9,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     funkcja.cpp \
-    interpolacja.cpp \
-    interpolacjawielomian.cpp \
     wielomian.cpp \
     calkowanie.cpp \
     newtoncotes.cpp \
@@ -21,8 +19,6 @@ SOURCES += main.cpp \
 
 HEADERS += \
     funkcja.h \
-    interpolacja.h \
-    interpolacjawielomian.h \
     wielomian.h \
     calkowanie.h \
     newtoncotes.h \

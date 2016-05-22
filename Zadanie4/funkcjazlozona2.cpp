@@ -10,7 +10,12 @@ string FunkcjaZlozona2::napis()
   return "wykres funkcji zlozonej";
 }
 
-double FunkcjaZlozona2::oblicz(double x)
+double FunkcjaZlozona2::oblicz(double x,bool waga)
 {
-    return sin(x*x)*cos(x) * 2*x*x;
+    double y = (sin(x*x)*cos(x) * 2*x*x);
+    if(waga==1)
+    {
+        y=y/sqrt(1-x*x);
+    }
+    return y;
 }

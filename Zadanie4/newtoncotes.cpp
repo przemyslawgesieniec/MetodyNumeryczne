@@ -1,18 +1,19 @@
 #include "newtoncotes.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 NewtonCotes::NewtonCotes() : Calkowanie()
 {
 
 }
 
-double NewtonCotes::calkuj(vector<double> x,double h,Funkcja * wsk)
+double NewtonCotes::calkuj(vector<double> x,double h,Funkcja * wsk,bool waga)
 {
     double Y=0;
     vector<double>y;
     for(int i=0;i<x.size();i++)
     {
-        y.push_back(wsk->oblicz(x.at(i)));
+        y.push_back(wsk->oblicz(x.at(i),waga));
     }
     double tmpYnp=0;
     double tmpYp=0;

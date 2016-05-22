@@ -10,9 +10,10 @@ class Gauss : public Calkowanie
 {
 public:
     Gauss();
-     double calkuj(vector<double> x, double h, Funkcja *wsk);
+    double calkuj(vector<double> x, double h, Funkcja *wsk,bool waga);
 private:
-
+vector<double> zeraCzebyszewa;
+vector<double> wspCzebyszewa;
 };
 
 #endif // GAUSS_H

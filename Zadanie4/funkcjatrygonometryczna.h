@@ -10,7 +10,7 @@ class FunkcjaTrygonometryczna: public Funkcja
 public:
     FunkcjaTrygonometryczna();
     string napis();
-    double oblicz(double x);
+    double oblicz(double x, bool waga);
 };
 
 #endif // FUNKCJATRYGONOMETRYCZNA_H

@@ -9,7 +9,7 @@ class Calkowanie
 public:
     Calkowanie(){};
     virtual ~Calkowanie() {};
-    virtual double calkuj(vector<double> x,double h,Funkcja *wsk)=0;
+    virtual double calkuj(vector<double> x,double h,Funkcja *wsk,bool waga)=0;
 };
 
 #endif // CALKOWANIE_H
