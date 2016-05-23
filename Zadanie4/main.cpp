@@ -18,7 +18,7 @@ using namespace std;
 
 //void wartosciWezlow(vector<double> *wskArgiXnode, vector<double> *wskArgiYnode, Interpolacja *wskinter, Funkcja *wsk);
 void podajArgumenty(double *wskX1, double *wskXn);
-double policzGranice(double x1, double xn, Funkcja *wsk, Calkowanie *calka);
+double policzGranice(double x1, double xn, Funkcja *wsk, Calkowanie *calka, double Y, double *wskDokladnosc, vector<double> argX, double dokladnosc, double iteracja);
 int main()
 {
 
@@ -36,7 +36,6 @@ int main()
         int key;
         double x1;
         double xn;
-        int liczba_wezlow;
         double dokladnosc;
         double *wskX1 = &x1;
         double *wskXn = &xn;
@@ -202,37 +201,19 @@ int main()
         double otrzymanaDokladnosc = UINT_MAX;
         int iteracja = 2;
         double Y = 0;
-        double tmpY=0;
         //0 do 1
         x1=0;
         xn=0.5;
         double deltaX=0;
         while(otrzymanaDokladnosc > dokladnosc)
         {
-            double n = PRZESKOK;
-            double h = (xn-x1)/ n;
-            for(int i=0;i<n+1;i++)
-            {
-                argX.push_back(x1+h*i);
-            }
-            tmpY = calka->calkuj(argX,h,wsk,waga);
-            otrzymanaDokladnosc = fabs(tmpY);
-            if(otrzymanaDokladnosc>dokladnosc)
-            {
-                Y+=tmpY;
-            }
-            else
-            {
-                cout<<"otrzymane przyblizenie jest granica"<<endl;
-            }
-            cout<<"przyblizona wartosc calki w "<<iteracja-1<<" iteracji wynosi: "<<Y<<" a dokladnosc: "<<otrzymanaDokladnosc<<endl;
-            iteracja++;
-            argX.clear();
+            double *wskDokladnosc = &otrzymanaDokladnosc;
+            Y= policzGranice(x1,xn,wsk,calka,Y,wskDokladnosc,argX,dokladnosc,iteracja);
             deltaX=xn-x1;
             x1=xn;
             xn=x1+(0.5*deltaX);
+            iteracja++;
         }
-        cout<<"policzone dla prawego"<<endl;
         //od -1 do 0
         otrzymanaDokladnosc = UINT_MAX;
         x1=-0.5;
@@ -240,30 +221,13 @@ int main()
         deltaX=0;
         while(otrzymanaDokladnosc > dokladnosc)
         {
-            double n = PRZESKOK;
-            double h = (xn-x1)/ n;
-            for(int i=0;i<n+1;i++)
-            {
-                argX.push_back(x1+h*i);
-            }
-            tmpY = calka->calkuj(argX,h,wsk,waga);
-            otrzymanaDokladnosc = fabs(tmpY);
-            if(otrzymanaDokladnosc>dokladnosc)
-            {
-                Y+=tmpY;
-            }
-            else
-            {
-                cout<<"otrzymane przyblizenie jest granica"<<endl;
-            }
-            cout<<"przyblizona wartosc calki w "<<iteracja-1<<" iteracji wynosi: "<<Y<<" a dokladnosc: "<<otrzymanaDokladnosc<<endl;
-            iteracja++;
-            argX.clear();
+            double *wskDokladnosc = &otrzymanaDokladnosc;
+            Y= policzGranice(x1,xn,wsk,calka,Y,wskDokladnosc,argX,dokladnosc,iteracja);
             deltaX=xn-x1;
             xn=x1;
             x1=xn-(0.5*deltaX);
+            iteracja++;
         }
-     cout<<"policzone dla lewego i prawego"<<endl;
     }
     else if(wybor2==2)
     {
@@ -284,9 +248,6 @@ int main()
             cout<<argY.at(i)<<endl;
         }
     }
-
-
-
 return 0;
 }
 void podajArgumenty(double *wskX1, double *wskXn)
@@ -300,7 +261,29 @@ void podajArgumenty(double *wskX1, double *wskXn)
     *wskX1=x1;
     *wskXn=xn;
 }
-double policzGranice(double x1,double xn,Funkcja *wsk,Calkowanie *calka)
+double policzGranice(double x1,double xn,Funkcja *wsk,Calkowanie *calka,double Y,double *wskDokladnosc,vector <double> argX,double dokladnosc,double iteracja)
 {
-
+    double n = PRZESKOK;
+    double tmpY=0;
+    double otrzymanaDokladnosc;
+    double h = (xn-x1)/ n;
+    for(int i=0;i<n+1;i++)
+    {
+        argX.push_back(x1+h*i);
+    }
+    tmpY = calka->calkuj(argX,h,wsk,1);
+    otrzymanaDokladnosc = fabs(tmpY);
+    if(otrzymanaDokladnosc>dokladnosc)
+    {
+        Y+=tmpY;
+    }
+    else
+    {
+        cout<<">>Otrzymane przyblizenie jest granica<<"<<endl;
+    }
+    cout<<"przyblizona wartosc calki w "<<iteracja-1<<" iteracji wynosi: "<<Y<<" a dokladnosc: "<<otrzymanaDokladnosc<<endl;
+    iteracja++;
+    argX.clear();
+    *wskDokladnosc = otrzymanaDokladnosc;
+    return Y;
 }
